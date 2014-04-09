@@ -10,15 +10,10 @@ module Mention
           # TODO Should ignore email
           mentioned_users = journal.notes.scan(/\@\w+/)
           mentioned_users.each do |mentioned_user|
-            username = mentioned_user[1..-1] # Remove the heading '@'
-            if user = User.find_by_login(username)
-              Watcher.create(:watchable => issue, :user => user)
-            end
+            Watcher.create(:watchable => issue, :user => user) if user = User.find_by_login(mentioned_user[1..-1])
           end
         end
       end
     end
   end
 end
-
-Journal.send(:include, Mention::JournalHook) unless Journal.included_modules.include? Mention::JournalHook

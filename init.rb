@@ -1,8 +1,8 @@
 require 'redmine'
-require 'dispatcher'
+require 'journal_hook'
 
-Dispatcher.to_prepare do
-  require_dependency 'journal_hook'
+Rails.application.config.to_prepare do
+  Journal.send(:include, Mention::JournalHook)
 end
 
 Redmine::Plugin.register :redmine_mention_plugin do
