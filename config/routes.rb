@@ -1,0 +1,1 @@
+match 'mention/users/search', :to => 'users#search'
