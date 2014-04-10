@@ -1,21 +1,16 @@
 require 'redmine'
-require 'mention/journal_hook'
-require 'mention/users_controller_patch'
-require 'mention/user_patch'
+require 'mention'
 
 Rails.application.config.to_prepare do
-  Journal.send(:include, Mention::JournalHook)
-  UsersController.send(:include, Mention::UsersControllerPatch)
-  User.send(:include, Mention::UserPatch)
+  Mention.apply_patch
 end
 
 Redmine::Plugin.register :redmine_mention_plugin do
-  name 'Redmine Mention Plugin'
-  author 'Steply'
-  description 'Add user to watcher list after mentioning him/her (e.g. @john) in issue note'
-  version '0.1'
-  url 'http://github.com/steply/redmine-mention-plugin'
-  author_url 'http://steply.com'
+  name 'redmine_mention_plugin'
+  author 'Systango'
+  description 'Add user to watcher list after mentioning him/her (e.g. @john) in issue note and wiki'
+  version '0.0.1'
+  requires_redmine :version_or_higher => '2.2.4'
 
   require 'redmine_mention_plugin_hook_listener.rb'
 end

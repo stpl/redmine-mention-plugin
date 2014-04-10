@@ -4,9 +4,8 @@ module Mention
       base.class_eval do
         def search
           result = []
-          if params[:keyword]
-            result = User.with_username(params[:keyword])
-          end
+          result = User.with_username(params[:keyword]).collect{|user| {id: user.id, username: user.login}} if params[:keyword]
+          render json: {result: result}
         end
       end
     end

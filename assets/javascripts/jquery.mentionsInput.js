@@ -24,11 +24,11 @@
     templates     : {
       wrapper                    : _.template('<div class="mentions-input-box"></div>'),
       autocompleteList           : _.template('<div class="mentions-autocomplete-list"></div>'),
-      autocompleteListItem       : _.template('<li data-ref-id="<%= id %>" data-ref-type="<%= type %>" data-display="<%= display %>"><%= content %></li>'),
+      autocompleteListItem       : _.template('<li data-ref-id="<%= id %>" data-display="<%= display %>"><%= content %></li>'),
       autocompleteListItemAvatar : _.template('<img src="<%= avatar %>" />'),
       autocompleteListItemIcon   : _.template('<div class="icon <%= icon %>"></div>'),
       mentionsOverlay            : _.template('<div class="mentions"><div></div></div>'),
-      mentionItemSyntax          : _.template('@[<%= value %>](<%= type %>:<%= id %>)'),
+      mentionItemSyntax          : _.template('@[<%= value %>](<%= id %>)'),
       mentionItemHighlight       : _.template('<strong><span><%= value %></span></strong>')
     }
   };
@@ -170,7 +170,7 @@
       hideAutoComplete();
 
       // Mentions & syntax message
-      var updatedMessageText = start + mention.value + ' ' + end;
+      var updatedMessageText = start + '[~' + mention.value + '] ' + end;
       elmInputBox.val(updatedMessageText);
       updateValues();
 
@@ -297,7 +297,7 @@
       // Filter items that has already been mentioned
       var mentionValues = _.pluck(mentionsCollection, 'value');
       results = _.reject(results, function (item) {
-        return _.include(mentionValues, item.name);
+        return _.include(mentionValues, item.username);
       });
 
       if (!results.length) {
@@ -311,13 +311,12 @@
       _.each(results, function (item, index) {
         var itemUid = _.uniqueId('mention_');
 
-        autocompleteItemCollection[itemUid] = _.extend({}, item, {value: item.name});
+        autocompleteItemCollection[itemUid] = _.extend({}, item, {value: item.username});
 
         var elmListItem = $(settings.templates.autocompleteListItem({
           'id'      : utils.htmlEncode(item.id),
-          'display' : utils.htmlEncode(item.name),
-          'type'    : utils.htmlEncode(item.type),
-          'content' : utils.highlightTerm(utils.htmlEncode((item.name)), query)
+          'display' : utils.htmlEncode(item.username),
+          'content' : utils.highlightTerm(utils.htmlEncode((item.username)), query)
         })).attr('data-uid', itemUid);
 
         if (index === 0) {
