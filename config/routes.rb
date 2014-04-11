@@ -1,1 +1,1 @@
-match 'mention/users/search', :to => 'users#search'
+match 'mention/users/search', :to => 'users#search' #This route might easily clash with some other route. So lets's scope this in.

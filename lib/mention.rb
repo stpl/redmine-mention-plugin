@@ -17,7 +17,7 @@ module Mention
       	if watchable.is_a?(Issue) or watchable.is_a?(WikiPage)
       		Watcher.create(:watchable => watchable, :user => user)
       	else
-      		content = content.gsub(mentioned_user, "<a class='user active' href='/users/#{user.id}'>#{user.name}</a>")
+      		content = content.gsub(mentioned_user, "<a class='user active' href='/users/#{user.id}'>#{user.name}</a>") # Why is this in the else condition? Even if watchable is a issue, dont we need to do this gsub?
       	end
       end
     end

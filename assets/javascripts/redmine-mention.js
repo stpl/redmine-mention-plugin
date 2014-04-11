@@ -5,13 +5,13 @@ $(function () {
       var data = [];
       $.ajax({
         url: '/mention/users/search',
-        data: {'keyword': query},
-        async: false,
+        data: {'keyword': query}, // Why have we named it as "keyword" ?
+        async: false, // Why is async false?
         success: function(result) {
-          data = result['result'];
+          data = result['result']; // Shouldn't this be names as result[users] ?
         }
       });
-      data = _.filter(data, function(item) { return item.username.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+      data = _.filter(data, function(item) { return item.username.toLowerCase().indexOf(query.toLowerCase()) > -1 }); // Do we need this filter? Won't the server already return results that are relevant?
 
       callback.call(this, data);
     },

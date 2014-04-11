@@ -1,3 +1,4 @@
 # English strings go here for Rails i18n
+# Do we need this file?
 en:
   my_label: "My label"
