@@ -3,7 +3,6 @@ require_dependency 'watcher'
 require_dependency 'user'
 require_dependency 'wiki_page'
 require 'mention/journal_patch'
-require 'mention/users_controller_patch'
 require 'mention/user_patch'
 require 'mention/journal_helper_patch'
 require 'mention/wiki_helper_patch'
@@ -26,7 +25,6 @@ module Mention
 
   def self.apply_patch
 	  Journal.send(:include, Mention::JournalPatch)
-	  UsersController.send(:include, Mention::UsersControllerPatch)
 	  User.send(:include, Mention::UserPatch)
 	  JournalsHelper.send(:include, Mention::JournalHelperPatch)
 	  WikiHelper.send(:include, Mention::WikiHelperPatch)

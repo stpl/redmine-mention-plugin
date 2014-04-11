@@ -316,7 +316,9 @@
         var elmListItem = $(settings.templates.autocompleteListItem({
           'id'      : utils.htmlEncode(item.id),
           'display' : utils.htmlEncode(item.username),
-          'content' : utils.highlightTerm(utils.htmlEncode((item.username)), query)
+          'content' : utils.highlightTerm(utils.htmlEncode((item.username)), query),
+          'name'    : utils.htmlEncode(item.full_name),
+          'email'    : utils.htmlEncode(item.email),
         })).attr('data-uid', itemUid);
 
         if (index === 0) {

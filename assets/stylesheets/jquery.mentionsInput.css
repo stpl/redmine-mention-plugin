@@ -30,7 +30,7 @@
 
 .mentions-input-box .mentions-autocomplete-list li {
   background-color: #fff;
-  padding: 0 5px;
+  padding: 0 5px 5px;
   margin: 0;
   width: auto;
   border-bottom: 1px solid #eee;
@@ -46,18 +46,6 @@
   border-radius:5px;
 }
 
-.mentions-input-box .mentions-autocomplete-list li > img,
-.mentions-input-box .mentions-autocomplete-list li > div.icon {
-  width: 16px;
-  height: 16px;
-  float: left;
-  margin-top:5px;
-  margin-right: 5px;
-  -moz-background-origin:3px;
-
-  border-radius:3px;
-}
-
 .mentions-input-box .mentions-autocomplete-list li em {
   font-weight: bold;
   font-style: none;
@@ -65,7 +53,8 @@
 
 .mentions-input-box .mentions-autocomplete-list li:hover,
 .mentions-input-box .mentions-autocomplete-list li.active {
-  background-color: #f2f2f2;
+  background-color: #116699;
+  color: #fff;
 }
 
 .mentions-input-box .mentions-autocomplete-list li b {

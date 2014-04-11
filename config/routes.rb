@@ -1,1 +1,1 @@
-match 'mention/users/search', :to => 'users#search'
+match 'mention/search', :to => 'mention#search'
